@@ -1,3 +1,10 @@
+## 交付渠道：GitHub Releases（2026-10-25）
+
+- 仓库：https://github.com/OrzTanLaLa/english-reading（只含 HAP 源码 + 脚本 + 文档；artifacts/validation/vendor/真实 Key 不入库）
+- 首个 Release：**v1.0.0**，附 nglish-reading-1.0.0.hap（2.89 MB，debug 签名，Profile 需含目标设备 UDID）
+  https://github.com/OrzTanLaLa/english-reading/releases/tag/v1.0.0
+- 发版流程：`git add app docs scripts` → commit → push；构建 debug HAP；REST API 建 release + 传资产。
+- 网络：直连 github 不通，已给本仓库设 `http.proxy=http://127.0.0.1:7890`。
 # 当前状态（每次接手先读）
 
 > ⚠️ **2026-10-23 数据事故**：设备上 `files/course/` 被清空（11 门 → 0），只剩
