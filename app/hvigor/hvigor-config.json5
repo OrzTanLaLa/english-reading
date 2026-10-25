@@ -1,0 +1,15 @@
+{
+  "modelVersion": "26.0.0",
+  "dependencies": {},
+  "execution": {
+    "daemon": true,
+    "incremental": true,
+    "parallel": true,
+    "optimizationStrategy": "performance"
+  },
+  "logging": {
+    "level": "error"
+  },
+  "debugging": {},
+  "nodeOptions": {}
+}

@@ -1,0 +1,69 @@
+# 云端 Key，绝不入库
+validation/*/config.json
+
+# 签名材料（DevEco 自动签名生成在 ~/.ohos/config，这里兜底）
+*.p12
+*.cer
+*.p7b
+*.pem
+*.jks
+*.keystore
+
+# 缓存与临时
+__pycache__/
+*.pyc
+*.bak
+.dsh-write-probe
+
+# 构建缓存（hvigor 包装器默认写用户目录，这里指到工作区内以便受限沙箱能编译）
+.hvigor/
+.npm-cache/
+.pnpm-store/
+node_modules/
+oh_modules/
+
+# 测试临时产物（test_layout.mjs 会把 layout.ts 复制到这里）
+.tmp/
+
+# 词典原始数据：mdx/mdd 动辄几百 MB～几 GB，且受版权保护，一律不入库
+validation/dict/*.mdx
+validation/dict/*.mdd
+validation/dict/*.css
+validation/dict/*.js
+validation/dict/*.png
+validation/dict/词典数据处理/
+
+# 词典构建产物（可用 scripts/build_dict.py 重新生成）
+validation/dict/oewn/
+validation/dict/*.db
+validation/dict/*.zip
+
+# 词典探针用的内置词库（26 MB，验证用，不入库）
+app/entry/src/main/resources/rawfile/words.db
+
+# 播放器探针用的测试音频（由 t1.mp3 转码生成，不入库）
+app/entry/src/main/resources/rawfile/t1.pcm
+
+# 高亮探针的测试音频（由 longbaizhi_t2.mp3 转码生成，不入库）
+app/entry/src/main/resources/rawfile/t2.pcm
+
+# 本地调试密钥，绝不入库
+app/entry/src/main/ets/adapters/local_secret.ts
+
+# 播放器/导入探针的测试图
+app/entry/src/main/resources/rawfile/test_page.jpg
+
+# TTS 探针输出音频
+validation/B0B/out/qwen_tts/
+
+# 从鸿蒙 MCP 拉下来的官方文档（按需重新获取，不入库）
+docs/vendor/
+
+docs/vendor/
+
+.cache/
+.npm-cache/
+
+.tmp/
+
+.tools/

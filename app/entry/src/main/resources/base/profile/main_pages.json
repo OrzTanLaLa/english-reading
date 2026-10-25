@@ -1,0 +1,19 @@
+{
+  "src": [
+    "pages/Library",
+    "pages/Scan",
+    "pages/ImportProbe",
+    "pages/HighlightProbe",
+    "pages/PlayerProbe",
+    "pages/OcrProbe",
+    "pages/TtsSdkProbe",
+    "pages/PermProbe",
+    "pages/Settings",
+    "pages/About",
+    "pages/ApiKeys",
+    "pages/ApiKeyEdit",
+    "pages/Glossary",
+    "pages/Editor",
+    "pages/Reader"
+  ]
+}
