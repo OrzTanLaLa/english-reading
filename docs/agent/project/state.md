@@ -1,9 +1,9 @@
-## 交付渠道：GitHub Releases（2026-10-25）
+## 仓库与分发（2026-10-25）
 
-- 仓库：https://github.com/OrzTanLaLa/english-reading（只含 HAP 源码 + 脚本 + 文档；artifacts/validation/vendor/真实 Key 不入库）
-- 首个 Release：**v1.0.0**，附 nglish-reading-1.0.0.hap（2.89 MB，debug 签名，Profile 需含目标设备 UDID）
-  https://github.com/OrzTanLaLa/english-reading/releases/tag/v1.0.0
-- 发版流程：`git add app docs scripts` → commit → push；构建 debug HAP；REST API 建 release + 传资产。
+- 仓库：https://github.com/OrzTanLaLa/english-reading（只含 HAP 源码 + 脚本 + 文档；
+  artifacts/validation/docs/vendor/真实 Key 不入库）
+- **不做 Release**（已建后删除）：HAP 是 debug 签名，Profile 只登记本机 UDID，
+  别的设备装了会报 **9568423**。自用就 `hdc install -r`；要给第二台装，把那台 UDID 加进 Profile 重签。
 - 网络：直连 github 不通，已给本仓库设 `http.proxy=http://127.0.0.1:7890`。
 # 当前状态（每次接手先读）
 
