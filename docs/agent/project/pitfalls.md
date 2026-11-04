@@ -194,6 +194,20 @@ List() {
   页面所有图标状态**只从它同步**（`syncState()`），不再手工赋值。
 - **教训**：任何「播放/暂停」类 UI，状态必须来自播放器；想播就显式 `play()`。
 
+### 38. 几天后打不开：桌面显示「应用已过期」（debug 签名只有 14 天）
+- **现象**：装好十几天后，点桌面图标提示「应用已过期」；`aa start` 返回
+  `Error Code:10106105 The target application is under control`（系统拦截启动）。
+- **根因**：**自动签名（debug）的 Profile 有效期只有 14 天**。实测本机签名文件
+  `~/.ohos/config/default_app_*.p7b` 内 `validity`：`2026-10-20 14:33 → 2026-11-03 14:33`
+  （正好 1209600 秒 = 14 天），过期后系统拒绝运行。
+- **官方依据**（`configuring-signature` / AGC FAQ）：**未实名开发者调试证书有效期 14 天**；
+  实名认证后为 **180 天 / 1 年**。
+- **解法**：DevEco Studio → `File > Project Structure > Signing Configs` → 重新勾选
+  **Automatically generate signature**（向 AGC 重新申请 Profile）→ 重新构建 → `hdc install -r`。
+  **重签必须重新构建**（签名在构建期写入），数据不会丢（覆盖安装）。
+- **根治**：完成华为开发者**实名认证**，再重签一次，有效期变 180 天。
+- **无法脚本化**：Profile 由 IDE 走 AGC 申请，`hvigorw` 只会复用已有（可能已过期的）p7b。
+
 ### 37. 课程数据被清空，而唯一的完整备份被我删了（2026-10-23）
 - **现象**：`files/course/` 变空（目录 mtime 18:08），11 门课的 `text.txt`/`images/`/`audio.pcm`/`words.json`
   全没了。表现为导出时 `[export] courses=0`、zip 只有 **22 字节**（空包）——追了两小时才发现是**没有数据可打包**。
