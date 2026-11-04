@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "英语课文朗读与生词本"
+      "value": "英文朗读：拍照朗读、逐词高亮、随时提问"
     },
     {
       "name": "EntryAbility_desc",
@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "英语朗读"
+      "value": "英文朗读"
     },
     {
       "name": "mic_reason",
