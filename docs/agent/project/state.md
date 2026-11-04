@@ -9,6 +9,25 @@
 - **待办**：把 `.app` 上传 AGC → 填资料（见 `docs/release/上架材料.md`）→ 提交审核。
 - 注册需注意：release 包不能 hdc 安装（9568402），调试继续用 debug 包。
 
+### 应用名与图标（2026-11-04）
+
+- 商店名 **「英文朗读」**（原「英语朗读」在 AGC 已被占用）；`app_name` 与 `EntryAbility_label` 已改，
+  文档/上架文案/隐私政策同步，隐私页已重新推到 `gh-pages`（`index.html` 在**分支根目录**）。
+- 图标：白底黑字（`English` + 繁体「讀」），`docs/release/icon/appicon-1024.png`（AGC 上传用）与
+  `appicon-216.png`；App 内 `$media:appicon` 已替换原 layered_image，桌面实拍验证清晰可读。
+- 当前上架包：`app-default-signed.app` **1.84 MB**，versionCode 1000001。
+- ⚠️ `scripts/build-release.ps1` 依赖 `build-profile.json5` 里 product default 的
+  `"signingConfig": "default"` 这一行；若上次构建被中断留下 `"release"`，脚本会报「没找到字段」，先改回再跑。
+
+### AGC 上架表单要点（2026-11-04 实拍）
+
+- 隐私声明页：可选「隐私托管」（华为模板，需先在协议服务填表）或「**自定义隐私政策**」（直接填
+  `https://orztanlala.github.io/english-reading/`，更快）；用户协议可不填。
+- 隐私标签：勾「涉及个人信息收集=是」「业务场景=应用功能」，按
+  `docs/release/上架文案.md` 的表格逐条添加数据项（照片 / 语音 / 文本，均说明共享给百炼或 DeepSeek）。
+- 首次上架左侧是「应用信息 → 软件包管理 → 版本信息（准备提交）→ 价格与销售范围」，
+  「版本管理」是上架之后的叫法。
+
 ## 2026-11-04 换包名 + 数据迁移（D47）
 
 - 新包名 **`com.orztan.englishreading`**，Profile 绑定新包名（11-04 → 11-18），已装机可用。
