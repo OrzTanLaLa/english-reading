@@ -5,6 +5,7 @@ validation/*/config.json
 *.p12
 *.cer
 *.p7b
+*.csr
 *.pem
 *.jks
 *.keystore
