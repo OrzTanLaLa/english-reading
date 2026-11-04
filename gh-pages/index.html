@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>英语朗读 · 隐私政策</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem;
+         font: 16px/1.75 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; }
+  h1 { font-size: 1.7rem; margin-bottom: .25rem; }
+  h2 { font-size: 1.2rem; margin-top: 2.2rem; padding-bottom: .35rem; border-bottom: 1px solid #e5e5ea; }
+  h3 { font-size: 1.05rem; margin-top: 1.6rem; }
+  p, li { color: #1c1c1e; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .94rem; }
+  th, td { border: 1px solid #e5e5ea; padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background: #f5f6f8; }
+  code { background: #f2f2f7; padding: .1rem .3rem; border-radius: 4px; font-size: .9em; }
+  blockquote { margin: 1rem 0; padding: .6rem .9rem; background: #f5f6f8; border-left: 3px solid #c7c7cc; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #1c1c1e; }
+    p, li, td, th { color: #e5e5ea; }
+    th { background: #2c2c2e; }
+    td, th { border-color: #3a3a3c; }
+    h2 { border-color: #3a3a3c; }
+    code { background: #2c2c2e; }
+    blockquote { background: #2c2c2e; border-left-color: #636366; }
+  }
+</style>
+</head>
+<body>
+<h1>英语朗读 · 隐私政策</h1>
+<p><strong>生效日期：2026-11-04</strong></p>
+<p><strong>适用应用：英语朗读（包名 <code>com.orztan.englishreading</code>）</strong></p>
+<p>本应用是一款在 HarmonyOS 设备上运行的英语精读工具，帮助你把课本拍照转为文字、朗读并逐词高亮、</p>
+<p>在阅读中随时提问并把生词记入语汇录。我们尽量少收集数据，所有课程内容默认<strong>只保存在你自己的设备上</strong>。</p>
+<h2>一、我们处理哪些信息</h2>
+<table><thead><tr><th>信息</th><th>何时产生</th><th>用途</th><th>是否离开设备</th></tr></thead><tbody>
+<tr><td>你拍摄或从图库选择的<strong>课本照片</strong></td><td>导入课文时</td><td>发送到云端做文字识别（OCR）</td><td>是，仅用于本次识别</td></tr>
+<tr><td>识别出的<strong>课文文本</strong></td><td>导入后</td><td>合成朗读音频、作为提问上下文</td><td>文本会发送到云端合成与问答</td></tr>
+<tr><td>你的<strong>语音提问录音</strong></td><td>点击麦克风时</td><td>发送到云端识别成文字</td><td>是，仅用于本次识别</td></tr>
+<tr><td>你<strong>输入的文字问题</strong></td><td>打字提问时</td><td>发送到云端获取回答</td><td>是</td></tr>
+<tr><td>合成音频、词级时间戳、语汇录</td><td>应用自动生成</td><td>本地朗读与复习</td><td>否</td></tr>
+<tr><td>API Key（百炼 / DeepSeek）</td><td>你在设置页填写</td><td>调用云端服务的凭证</td><td>否，仅存本机</td></tr>
+</tbody></table>
+<p><strong>不收集</strong>：通讯录、短信、位置、设备标识符（IMEI/OAID）、剪贴板、已安装应用列表、使用行为统计。</p>
+<p><strong>不含广告、不含第三方统计 SDK。</strong></p>
+<h2>二、第三方服务</h2>
+<p>为实现识别、朗读与问答，应用会把<strong>当次请求所需的最小内容</strong>发送给以下服务：</p>
+<table><thead><tr><th>服务</th><th>提供方</th><th>收到的内容</th><th>用途</th></tr></thead><tbody>
+<tr><td>文字识别（qwen3-vl-plus）</td><td>阿里云百炼（DashScope）</td><td>你选择的课本照片</td><td>OCR</td></tr>
+<tr><td>语音合成（qwen-audio-3.1-tts-flash）</td><td>阿里云百炼（DashScope）</td><td>课文文本</td><td>生成朗读音频</td></tr>
+<tr><td>语音识别（qwen3.8-omni-flash）</td><td>阿里云百炼（DashScope）</td><td>你的语音提问录音</td><td>把语音转成问题</td></tr>
+<tr><td>问答（deepseek-chat）</td><td>深度求索（DeepSeek）</td><td>课文全文、当前句、你的问题</td><td>生成回答</td></tr>
+</tbody></table>
+<p>这些服务由其提供方按其隐私政策处理数据，应用不做长期存储，也不把它们用于训练。</p>
+<p>API Key 由你自行申请并填写，应用不内置任何密钥。</p>
+<h2>三、数据保存在哪里</h2>
+<ul>
+<li>课程（原文、原图、音频、语汇录）保存在<strong>本机应用沙箱</strong>内，不会上传到我们的服务器；</li>
+<li>API Key 保存在本机应用偏好设置中；</li>
+<li>卸载应用或删除课程会同时删除对应数据；</li>
+<li>你可以在「设置 → 导出文库数据」自行导出全部数据（zip）备份。</li>
+</ul>
+<h2>四、权限说明</h2>
+<table><thead><tr><th>权限</th><th>用途</th><th>是否可拒绝</th></tr></thead><tbody>
+<tr><td>麦克风（<code>ohos.permission.MICROPHONE</code>）</td><td>语音提问</td><td>可，拒绝后仍可打字提问</td></tr>
+<tr><td>网络（<code>ohos.permission.INTERNET</code>）</td><td>调用上述云端服务</td><td>可，拒绝后无法识别/朗读/问答</td></tr>
+<tr><td>相册 / 文件</td><td>通过<strong>系统选择器</strong>选择照片与导出 zip</td><td>无需额外授权，仅访问你主动选择的文件</td></tr>
+</tbody></table>
+<h2>五、你的权利</h2>
+<ul>
+<li>随时删除单门课程（库页菜单 → 删除）；</li>
+<li>随时修改或清空 API Key（设置 → 修改 API Key）；</li>
+<li>卸载应用以删除全部本地数据。</li>
+</ul>
+<h2>六、联系方式</h2>
+<p>如有疑问或数据相关请求，请联系：<strong>physicsorz@163.com</strong></p>
+<h2>七、变更</h2>
+<p>隐私政策如有更新，会随应用版本发布并更新本页日期。</p>
+</body>
+</html>
