@@ -1,3 +1,11 @@
+## 上架准备（2026-11-04）
+
+- **已实名认证**（调试证书有效期应从 14 天变 180 天/1 年，需重新自动签名一次才生效）。
+- AGC 已建应用：**App ID `6917620916046296214`**，包名 `com.orztan.englishreading`。
+- 上架材料已起草：`docs/release/privacy-policy.md`（隐私政策）、`docs/release/上架材料.md`
+  （简介 / 权限说明 / 截图清单 / 审核问答）。
+- **待办**：申请发布证书 + 发布 Profile → 配 release 签名 → 构建 `.app` → AGC 上传审核。
+
 ## 2026-11-04 换包名 + 数据迁移（D47）
 
 - 新包名 **`com.orztan.englishreading`**，Profile 绑定新包名（11-04 → 11-18），已装机可用。
