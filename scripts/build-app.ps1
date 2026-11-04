@@ -45,7 +45,7 @@ $deveco = 'E:\Tools\DevEco Studio'
 $repo = Split-Path -Parent $PSScriptRoot
 $app = Join-Path $repo 'app'
 $hdc = Join-Path $deveco 'sdk\default\openharmony\toolchains\hdc.exe'
-$bundle = 'com.example.englishreading'
+$bundle = 'com.orztan.englishreading'
 
 if (-not (Test-Path (Join-Path $app 'build-profile.json5'))) {
     throw "找不到工程：$app"

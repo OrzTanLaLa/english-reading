@@ -7,18 +7,20 @@ import { common } from '@kit.AbilityKit';
 import { router, promptAction } from '@kit.ArkUI';
 import { HdsNavigation, HdsNavigationTitleMode } from '@kit.UIDesignKit';
 import { Exporter, ExportResult } from '../adapters/exporter';
+import { Importer, ImportResult } from '../adapters/importer';
 
 @Entry
 @Component
 struct Settings {
   @State exporting: boolean = false;
+  @State importing: boolean = false;
 
   private ctx(): common.UIAbilityContext {
     return getContext(this) as common.UIAbilityContext;
   }
 
 
-  /** 选目录 → 逐课复制；不打包，结构照旧 */
+  /** 选目录 → 打包成一个 zip 保存 */
   private async doExport(): Promise<void> {
     if (this.exporting) {
       return;
@@ -36,6 +38,30 @@ struct Settings {
       promptAction.showToast({ message: '导出失败：' + String(err).substring(0, 60), duration: 2500 });
     } finally {
       this.exporting = false;
+    }
+  }
+
+  /** 选一个导出过的 zip，解压回 course/ */
+  private async doImport(): Promise<void> {
+    if (this.importing) {
+      return;
+    }
+    this.importing = true;
+    try {
+      const importer: Importer = new Importer(this.ctx());
+      const uri: string = await importer.pickZip();
+      if (uri.length === 0) {
+        return;   // 用户取消
+      }
+      const r: ImportResult = await importer.importZip(uri);
+      const msg: string = r.error.length === 0
+        ? '已导入 ' + r.ok + ' 份'
+        : '导入失败：' + r.error.substring(0, 80);
+      promptAction.showToast({ message: msg, duration: 3000 });
+    } catch (err) {
+      promptAction.showToast({ message: '导入失败：' + String(err).substring(0, 60), duration: 2500 });
+    } finally {
+      this.importing = false;
     }
   }
 
@@ -84,6 +110,13 @@ struct Settings {
             }
             .onClick(() => {
               void this.doExport();
+            })
+
+            ListItem({ style: ListItemStyle.CARD }) {
+              this.row('导入文库数据', this.importing ? '导入中…' : '选择 zip')
+            }
+            .onClick(() => {
+              void this.doImport();
             })
           }
           .divider({ strokeWidth: 1, color: '#F2F2F7', startMargin: 16, endMargin: 16 })

@@ -7,11 +7,11 @@
         "material": {
           "certpath": "C:\\Users\\Tan Zixuan\\.ohos\\config\\default_app_QuOlq7dIjG8qfDHv6ceyflvEX13IkvTkxLCqxPhl8q4=.cer",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B661FCC033BFF4D3BBF3A1CE7E70ABCFC24F48C70CDE07CA16BBA8E1D261E65E2FCF20FA18D08C0",
+          "keyPassword": "0000001BC3F345E5A5AC8D0CC15CCDCE78DF53F11F7983666C32933DA7C17F0EBADEFD24EC5826C1D81915",
           "profile": "C:\\Users\\Tan Zixuan\\.ohos\\config\\default_app_QuOlq7dIjG8qfDHv6ceyflvEX13IkvTkxLCqxPhl8q4=.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "C:\\Users\\Tan Zixuan\\.ohos\\config\\default_app_QuOlq7dIjG8qfDHv6ceyflvEX13IkvTkxLCqxPhl8q4=.p12",
-          "storePassword": "0000001BC0C1BA0035CAD2BCD5ECEE6E7AA1D57B261B9AD047807C511860A2C9E5FDA4D23E15C62465F6BE"
+          "storePassword": "0000001BC81A7C792CAF1AAA75C5CA7B4D1D3DB1C0E24666953EF6C75068B556D39B5A22DDC93618483930"
         }
       }
     ],

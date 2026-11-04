@@ -115,7 +115,7 @@ CQR ≈ ¥0.01/次，分组 ≈ ¥0.01/篇。
 
 | 项 | 值 |
 |---|---|
-| 工程根 | `app/`（`com.example.englishreading`，`runtimeOS: HarmonyOS`） |
+| 工程根 | `app/`（`com.orztan.englishreading`，`runtimeOS: HarmonyOS`） |
 | 版本 | `modelVersion` / `compatibleSdkVersion` / `targetSdkVersion` 都是 **`26.0.0`**（API ≥26 的 compile 版本**不带** `(26)` 后缀，规则在 `@ohos/hvigor-ohos-plugin` 的 `VersionConst`） |
 | 构建链 | hvigor 6.26.8 + IDE 自带 node v24.14.1 |
 | 编译 | `pwsh -File scripts\build-app.ps1`（封装了 `NODE_HOME` / `DEVECO_SDK_HOME` / `HVIGOR_USER_HOME`） |

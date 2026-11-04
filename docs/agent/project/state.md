@@ -1,3 +1,12 @@
+## 2026-11-04 换包名 + 数据迁移（D47）
+
+- 新包名 **`com.orztan.englishreading`**，Profile 绑定新包名（11-04 → 11-18），已装机可用。
+- 「应用已过期」根因 = 调试证书 14 天到期（未实名）；修复流程：DevEco 重新自动签名 → 构建 →
+  **`bm uninstall -n <bundle> -k` 保数据重装**（不重装的话系统管控标记一直拦，`10106105`）。
+- 换包名后旧数据搬不过去（沙箱 owner-only），已用「导出 → 导入」迁移 5 门课（30.8 MB），
+  界面与列表正常；旧包仍可留着做对照。
+- 备份留档：`backup/device-20261104-2156/`（course + preferences）与 `文库备份.zip`。
+
 ## 仓库与分发（2026-10-25）
 
 - 仓库：https://github.com/OrzTanLaLa/english-reading（只含 HAP 源码 + 脚本 + 文档；

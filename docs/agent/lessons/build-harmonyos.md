@@ -97,7 +97,7 @@ $hdc = 'E:\Tools\DevEco Studio\sdk\default\openharmony\toolchains\hdc.exe'
 应用沙箱在 **`/data/app/el2/100/base/<bundle>/haps/entry/files`**，用 `hdc shell` 的 `ls / cat / tail` **可读**：
 
 ```powershell
-$base = '/data/app/el2/100/base/com.example.englishreading/haps/entry/files/course'
+$base = '/data/app/el2/100/base/com.orztan.englishreading/haps/entry/files/course'
 & $hdc shell "ls -lt $base"                      # 找最近改动的课
 & $hdc shell "tail -c 900 $base/<id>/glossary.yaml"
 ```

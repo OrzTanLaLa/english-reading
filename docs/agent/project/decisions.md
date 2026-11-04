@@ -195,6 +195,19 @@
   若非流式拿不到 `words` 就用 SSE 流式（同为一次请求、上下文连贯、明确支持时间戳）。
 - **收益**：绕开 SDK 无 `commit` 的限制；同模型、同 Key、同计费口径（按 token）。
 
+## D47 包名改为 `com.orztan.englishreading`，并补上「导入」
+- **改包名**（上架前必做）：`com.example.*` 过不了市场审核。`app.json5` 的 `bundleName` 改成
+  `com.orztan.englishreading`、`vendor` 改 `orztanlala`；`scripts/build-app.ps1` 的 `$bundle` 同步。
+- **代价**：换包名 = 换应用身份，**签名 Profile 必须重发**（Profile 里写死 bundleName，
+  构建会报 `00303074 bundleName … does not match the generated SigningConfigs`），
+  已装设备的数据也不会跟过去。旧包 `com.example.englishreading` 的数据留在沙箱里，
+  `hdc shell`（uid 2000）只能读不能写新包目录（owner-only 770），搬不过去。
+- **解法（同时是个真功能）**：新增「导入文库数据」——`picker.select(FILE, .zip)` →
+  `copyFileSync(fd, tempDir/in.zip)` → `zlib.decompressFile` 到临时目录 →
+  每个顶层 `<课程id>/` 用 `renameSync` 搬进 `course/`（同文件系统，不复制大文件）。
+  导出/导入配对，等于给用户完整的备份恢复。
+- **实测**：旧包 5 门课（30.8 MB）导出 → 新包导入 → 5 个目录、30,797 KB，界面正常列出。
+
 ## D46 语音提问解析关掉思考（`enable_thinking: false`）
 - **决定**：`CqrParser` 的请求体里用 `enable_thinking: false`（原来写的 `reasoning_effort: 'none'` 不起作用）。
 - **理由（实测，2026-11-04，同一段 4 秒录音 a01.wav）**：
