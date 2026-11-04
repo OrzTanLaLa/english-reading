@@ -11,7 +11,7 @@
  *   POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
  *   model = qwen3.8-omni-flash
  *   content = [ {type:'text', text}, {type:'input_audio', input_audio:{data:'data:audio/wav;base64,...', format:'wav'}} ]
- *   modalities = ['text'], reasoning_effort = 'none'
+ *   modalities = ['text'], enable_thinking = false（关思考，见 D46）
  */
 import { http } from '@kit.NetworkKit';
 
@@ -45,8 +45,19 @@ interface OmniBody {
   model: string;
   messages: OmniMessage[];
   modalities: string[];
-  reasoning_effort: string;
+  /** 关闭思考（Qwen3.8-Omni-Flash 默认开思考，思考 token 按输出计费，实测一个 3 秒音频能烧 400+ 个） */
+  enable_thinking: boolean;
   stream: boolean;
+}
+
+interface OmniUsage {
+  prompt_tokens?: number;
+  completion_tokens?: number;
+  completion_tokens_details?: ReasoningDetails;
+}
+
+interface ReasoningDetails {
+  reasoning_tokens?: number;
 }
 
 interface OmniMessage2 {
@@ -59,6 +70,7 @@ interface OmniChoice {
 
 interface OmniResponse {
   choices?: OmniChoice[];
+  usage?: OmniUsage;
 }
 
 export class CqrParser {
@@ -92,7 +104,7 @@ export class CqrParser {
       model: MODEL,
       messages: [{ role: 'user', content: content }],
       modalities: ['text'],
-      reasoning_effort: 'none',
+      enable_thinking: false,
       stream: false
     };
 
@@ -113,6 +125,13 @@ export class CqrParser {
         throw new Error('HTTP ' + resp.responseCode + ': ' + (resp.result as string).substring(0, 200));
       }
       const parsed: OmniResponse = JSON.parse(resp.result as string) as OmniResponse;
+      const u: OmniUsage | undefined = parsed.usage;
+      if (u !== undefined) {
+        const rd: ReasoningDetails | undefined = u.completion_tokens_details;
+        const rt: number = rd !== undefined && rd.reasoning_tokens !== undefined ? rd.reasoning_tokens : 0;
+        console.info('[cqr] prompt=' + String(u.prompt_tokens) + ' completion=' + String(u.completion_tokens) +
+          ' reasoning=' + String(rt));
+      }
       const choices: OmniChoice[] = parsed.choices !== undefined ? parsed.choices : [];
       if (choices.length === 0 || choices[0].message === undefined) {
         return '';

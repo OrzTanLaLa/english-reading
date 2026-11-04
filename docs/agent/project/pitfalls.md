@@ -207,6 +207,10 @@ List() {
   **重签必须重新构建**（签名在构建期写入），数据不会丢（覆盖安装）。
 - **根治**：完成华为开发者**实名认证**，再重签一次，有效期变 180 天。
 - **无法脚本化**：Profile 由 IDE 走 AGC 申请，`hvigorw` 只会复用已有（可能已过期的）p7b。
+- **构建期也会失败**（2026-11-04 实测）：证书过期后 `hvigorw assembleHap` 直接报
+  `Failed :entry:default@SignHap` → `ERROR: 11013002 Certificate format is incorrect`
+  → `The certificate has expired! NotAfter: Tue Nov 03 14:33:24 CST 2026`，连包都出不来。
+  所以「过期」有两个表现：**装机后打不开**、**再构建失败**。
 
 ### 37. 课程数据被清空，而唯一的完整备份被我删了（2026-10-23）
 - **现象**：`files/course/` 变空（目录 mtime 18:08），11 门课的 `text.txt`/`images/`/`audio.pcm`/`words.json`

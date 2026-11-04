@@ -276,7 +276,7 @@ getGlyphRangeForCharacterRange / getCharacterRangeForGlyphRange
 | 项 | 量级 |
 |---|---|
 | TTS（qwen-audio-3.1，446 字符 / 25 秒） | **0.39 分/篇**（实测 tokens） |
-| OCR（qwen3-vl-plus，一页） | 约 0.02 分/页（估算） |
+| OCR（qwen3-vl-plus，一页） | 约 0.9 分/页（1 元/M 输入 + 10 元/M 输出，按一页 1800 入 / 700 出估） |
 | ASR（一分钟） | 按秒计费，量级与 OCR 相当 |
 | LLM（Agent 一轮） | 忽略不计 |
 

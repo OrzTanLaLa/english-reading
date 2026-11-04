@@ -172,6 +172,13 @@ await zlib.compressFile(目录路径, 目标zip路径, options);   // inFile **�
 - 解压用 `zlib.decompressFile(zip, 目标目录, options)`。
 - 实测：11 门课（源约 50MB）→ 17.1MB，48 条目，完整性 OK。
 
+### 语音提问解析（Qwen3.8-Omni-Flash）成本与思考开关（2026-11-04）
+- 端点 `compatible-mode/v1/chat/completions`，音频按 **1 秒 = 7 token** 折算（≈0.000042 元/秒）；
+- **默认开思考**，思考 token 计入 completion 按输出价（4.5 元/M）→ 实测 4 秒录音烧 253 个 reasoning token；
+- 请求体加 `enable_thinking: false` 后 reasoning=0、completion 从 276 降到 11（D46）；
+  `reasoning_effort: 'none'` 这个参数**不生效**；
+- 对比：`qwen3-asr-flash` 0.00022 元/秒、输出不计费，但只做转写，还需一次改写调用。
+
 ### TTS 文本清洗 / 标点（2026-10-23）
 - `qwen-audio-3.1-tts-flash`（非实时 HTTP `SpeechSynthesizer`）**文档没有标点支持清单**；
 - 两种兜底：`hot_fix`（数字/缩写/**符号**读法不符预期时用，例：`@` 读成"艾特"）、`language_hints`（目标语言）；

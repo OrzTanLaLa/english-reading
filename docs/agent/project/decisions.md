@@ -195,6 +195,20 @@
   若非流式拿不到 `words` 就用 SSE 流式（同为一次请求、上下文连贯、明确支持时间戳）。
 - **收益**：绕开 SDK 无 `commit` 的限制；同模型、同 Key、同计费口径（按 token）。
 
+## D46 语音提问解析关掉思考（`enable_thinking: false`）
+- **决定**：`CqrParser` 的请求体里用 `enable_thinking: false`（原来写的 `reasoning_effort: 'none'` 不起作用）。
+- **理由（实测，2026-11-04，同一段 4 秒录音 a01.wav）**：
+
+  | 设置 | prompt | completion | reasoning | 单次成本（估） |
+  |---|---|---|---|---|
+  | `enable_thinking: false` | 54 | **11** | **0** | ≈ 0.00015 元 |
+  | `enable_thinking: true` | 94 | 276 | **253** | ≈ 0.0014 元 |
+
+  思考 token 按输出价（4.5 元/M）计费，占成本九成；我们要的只是一句改写后的问题，不需要推理。
+- **否决**：换 `qwen3-asr-flash`（0.00022 元/秒）——按 4 秒算 0.00088 元，还要再加一次文本改写调用，
+  比关思考后的 Omni 贵 5 倍，且多一次网络往返（延迟更高）、多一份 prompt 要维护。
+- **顺带**：`usage` 已打日志（`[cqr] prompt=… completion=… reasoning=…`），日后可直接核对。
+
 ## D45 「当前词」不进任何模型提示词
 - **决定**：听者（语音提问解析 `CqrParser.parse`）只传**当前句**，不再传「当前词」；
   答者（`ANSWER_SYSTEM_PROMPT` + `askAgent` 拼的 prompt）本来就没有当前词，保持不变。
