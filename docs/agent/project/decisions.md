@@ -195,6 +195,21 @@
   若非流式拿不到 `words` 就用 SSE 流式（同为一次请求、上下文连贯、明确支持时间戳）。
 - **收益**：绕开 SDK 无 `commit` 的限制；同模型、同 Key、同计费口径（按 token）。
 
+## D48 发布签名与上架包构建方式
+- **材料**（AGC 申请，2026-11-04）：`english-reading-release.p12` / `englishreading-release-20261104.cer`
+  / `english-readingRelease.p7b`，keyAlias `english-reading-key`；
+  Profile `type=release`、`bundle-name=com.orztan.englishreading`、有效期 **2026-11-04 → 2029-11-04（3 年）**、
+  无设备列表。四个文件都在仓库根，`.gitignore` 已全部忽略（`*.p12/*.cer/*.p7b/*.csr`）。
+- **DevEco 写入的签名密码是加密串**，所以 release 签名配置由 DevEco 生成，脚本不碰密码。
+- **构建 `-p product=release` 行不通**：模块 `targets` 加 `applyToProducts` 会报 schema 错误（00303038），
+  产品缺 HAP 又报 00304011。**改用 `scripts/build-release.ps1`：临时把 product `default` 的
+  signingConfig 换成 `release` → `assembleApp --mode project -p product=default -p buildMode=release`
+  → 构建完还原**（脚本用 finally 保证还原）。
+- **产物**：`app/build/outputs/default/app-default-signed.app`，1.81 MB，`pack.info` 里
+  versionCode **1000001** / versionName 1.0.0。
+- **注意**：release 签名的包**不能用 hdc/bm 安装**（9568402），只能上传 AGC 走市场分发；
+  日常调试仍用 debug 包（`scripts/build-app.ps1`）。
+
 ## D47 包名改为 `com.orztan.englishreading`，并补上「导入」
 - **改包名**（上架前必做）：`com.example.*` 过不了市场审核。`app.json5` 的 `bundleName` 改成
   `com.orztan.englishreading`、`vendor` 改 `orztanlala`；`scripts/build-app.ps1` 的 `$bundle` 同步。

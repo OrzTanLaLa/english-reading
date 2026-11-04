@@ -5,13 +5,26 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "C:\\Users\\Tan Zixuan\\.ohos\\config\\default_app_QuOlq7dIjG8qfDHv6ceyflvEX13IkvTkxLCqxPhl8q4=.cer",
+          "certpath": "C:/Users/Tan Zixuan/.ohos/config/default_app_QuOlq7dIjG8qfDHv6ceyflvEX13IkvTkxLCqxPhl8q4=.cer",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001BC3F345E5A5AC8D0CC15CCDCE78DF53F11F7983666C32933DA7C17F0EBADEFD24EC5826C1D81915",
-          "profile": "C:\\Users\\Tan Zixuan\\.ohos\\config\\default_app_QuOlq7dIjG8qfDHv6ceyflvEX13IkvTkxLCqxPhl8q4=.p7b",
+          "keyPassword": "0000001B826B97581DEC65944CAB38F3546BEE6C33E3AED6C9136F8F87996BE82473F9E6332AEEAF096891",
+          "profile": "C:/Users/Tan Zixuan/.ohos/config/default_app_QuOlq7dIjG8qfDHv6ceyflvEX13IkvTkxLCqxPhl8q4=.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Tan Zixuan\\.ohos\\config\\default_app_QuOlq7dIjG8qfDHv6ceyflvEX13IkvTkxLCqxPhl8q4=.p12",
-          "storePassword": "0000001BC81A7C792CAF1AAA75C5CA7B4D1D3DB1C0E24666953EF6C75068B556D39B5A22DDC93618483930"
+          "storeFile": "C:/Users/Tan Zixuan/.ohos/config/default_app_QuOlq7dIjG8qfDHv6ceyflvEX13IkvTkxLCqxPhl8q4=.p12",
+          "storePassword": "0000001B0772E662F108FA30C87581B3E687220381A4B5E5A0CC91FF4E803377ED916EA37517CCC994FD98"
+        }
+      },
+      {
+        "name": "release",
+        "type": "HarmonyOS",
+        "material": {
+          "storeFile": "E:/Project/english-reading/english-reading-release.p12",
+          "storePassword": "0000001CA50730831EEEBE0FED70301A4DA6BCD561836CF282C15B3D35F7A39B5EE181F979D014E42B50A463",
+          "keyAlias": "english-reading-key",
+          "keyPassword": "0000001C55E85DE85EB75C3030FE6436093439126155E3E0C8391EC6B9BDC25AFF1047DFA960E8B1D75B3049",
+          "signAlg": "SHA256withECDSA",
+          "profile": "E:/Project/english-reading/english-readingRelease.p7b",
+          "certpath": "E:/Project/english-reading/englishreading-release-20261104.cer"
         }
       }
     ],

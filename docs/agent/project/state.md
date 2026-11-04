@@ -4,7 +4,10 @@
 - AGC 已建应用：**App ID `6917620916046296214`**，包名 `com.orztan.englishreading`。
 - 上架材料已起草：`docs/release/privacy-policy.md`（隐私政策）、`docs/release/上架材料.md`
   （简介 / 权限说明 / 截图清单 / 审核问答）。
-- **待办**：申请发布证书 + 发布 Profile → 配 release 签名 → 构建 `.app` → AGC 上传审核。
+- **发布签名已就绪**：证书/Profile 2029-11-04 到期（3 年），`keyAlias=english-reading-key`；
+  构建用 `pwsh -File scripts/build-release.ps1` → `app-default-signed.app`（1.81 MB, versionCode 1000001）。
+- **待办**：把 `.app` 上传 AGC → 填资料（见 `docs/release/上架材料.md`）→ 提交审核。
+- 注册需注意：release 包不能 hdc 安装（9568402），调试继续用 debug 包。
 
 ## 2026-11-04 换包名 + 数据迁移（D47）
 
